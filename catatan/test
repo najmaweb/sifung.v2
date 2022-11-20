@@ -1,0 +1,44 @@
+select id,urt,urtx,kdsubutir,nops,tgops,jnsPPK,asal,tujuan,pemilik,dok1,dok2,dok3,dok4,stat1,stat2,stat3,stat4 from rincian01;
+
+select  media,jmlhewan,kelamin,bulukulit,kondisi,nafsu,discharge, keterangan,suhu from rincian01;
+
+select pulsus,respirasi,limfo,mukosa,turgor,lesi,nilaisuhu,nilaipulsus,nilairespirasi,nilailimfo,nilaimukosa,nilaiturgor,nilailesi,diagnosa from rincian01;
+
+select tindaklanjut,tmst,riwayat,raba,catatan,rekam from rincian01;
+select kesimpulan,angkutan,kondisiangkutan,penampakan from rincian01;
+
+
+
+ delete from rincian01 where urtx=14;alter table rincian01 auto_increment=14;
+
+
+yang tidak masuk:
+pulsus,respirasi,limfo,mukosa,turgor,lesi
+
+tidak lagi dipakai--riwayat,raba,catatan,rekam,kesimpulan,angkutan,kondisiangkutan,penampakan
+
+"update rincian01 set nops="888" ,tgops="2022-10-10" ,nafsu="" ,urtx="17" ,kondisi="" ,jmlhewan="0" ,suhu="30" ,turgor="b" ,media="1AA1A" ,pemilik="joker" ,jnsPPK="I" ,asal="AD" ,tujuan="01003" ,dok1="" ,dok2="" ,dok3="" ,dok4="" ,stat1="1" ,stat2="1" ,stat3="1" ,stat4="1" ,kelamin="1" ,discharge="1" ,pulsus="4" ,nilailimfo="" ,nilaimukosa="" ,nilaiturgor="" ,nilailesi="" ,bulukulit="" ,keterangan="" ,respirasi="66" ,limfo="1" where urtx="17""
+
+"update rincian01 set nops="888" ,tgops="2022-10-10" ,nafsu="" ,urtx="17" ,kondisi="" ,jmlhewan="0" ,suhu="30" ,turgor="b" ,media="1AA1A" ,pemilik="joker" ,jnsPPK="I" ,asal="AD" ,tujuan="01003" ,dok1="" ,dok2="" ,dok3="" ,dok4="" ,stat1="1" ,stat2="1" ,stat3="1" ,stat4="1" ,kelamin="1" ,discharge="1" ,pulsus="4" ,nilailimfo="" ,nilaimukosa="" ,nilaiturgor="" ,nilailesi="" ,bulukulit="" ,keterangan="" ,respirasi="66" ,limfo="1" where urtx="17""
+"update rincian01 set nops="888" ,tgops="2022-10-10" ,nafsu="" ,urtx="17" ,kondisi="" ,jmlhewan="0" ,suhu="30" ,turgor="b" ,media="1AA1A" ,pemilik="joker" ,jnsPPK="I" ,asal="AD" ,tujuan="01003" ,dok1="" ,dok2="" ,dok3="" ,dok4="" ,stat1="1" ,stat2="1" ,stat3="1" ,stat4="1" ,kelamin="1" ,discharge="1" ,pulsus="4" ,nilailimfo="" ,nilaimukosa="" ,nilaiturgor="" ,nilailesi="" ,bulukulit="" ,keterangan="" ,respirasi="66" ,limfo="1" where urtx="17""
+"update rincian01 set nops="9991" ,tgops="2022-10-18" ,nafsu="c" ,urtx="18" ,kondisi="kondisi tidak menunjukkan gejala klinis penyakit HPHK" ,jmlhewan="4" ,suhu="37" ,turgor="a" ,media="1BF0A" ,pemilik="Joko Tingkir" ,jnsPPK="E" ,asal="16032" ,tujuan="MY" ,dok1="Rekomendasi" ,dok2="Health Certificate" ,dok3="SK Penetapan IKH" ,dok4="" ,stat1="0" ,stat2="0" ,stat3="0" ,stat4="1" ,kelamin="1" ,discharge="1" ,pulsus="4" ,nilairespirasi="" ,nilailimfo="" ,nilaimukosa="" ,nilaiturgor="" ,nilailesi="" ,bulukulit="putih - hitam - kuning" ,keterangan="tidak menunjukkan gejala abnormalitas yang menciri" ,respirasi="" ,mukosa="" ,limfo="" ,lesi="" where urtx="18""
+
+"update rincian01 set nops="9991" ,tgops="2022-10-18" ,nafsu="c" ,urtx="17" ,kondisi="kondisi tidak menunjukkan gejala klinis penyakit HPHK" ,jmlhewan="4" ,suhu="37" ,turgor="a" ,media="1BF0A" ,pemilik="Joko Tingkir" ,jnsPPK="E" ,asal="16032" ,tujuan="MY" ,dok1="Rekomendasi" ,dok2="Health Certificate" ,dok3="SK Penetapan IKH" ,dok4="" ,stat1="0" ,stat2="0" ,stat3="0" ,stat4="1" ,kelamin="1" ,discharge="1" ,pulsus="45" ,nilairespirasi="" ,nilailimfo="" ,nilaimukosa="" ,nilaiturgor="" ,nilailesi="" ,bulukulit="putih - hitam - kuning" ,keterangan="tidak menunjukkan gejala abnormalitas yang menciri" ,respirasi="" ,mukosa="" ,limfo="" ,lesi="" where urtx="17""
+
+"update rincian01 set nops="999" ,tgops="2022-10-03" ,nafsu="c" ,urtx="18" ,kondisi="kondisi tidak menunjukkan gejala klinis penyakit HPHK" ,jmlhewan="4" ,suhu="37" ,turgor="a" ,media="1BD0A" ,pemilik="Joko Tingkir" ,jnsPPK="E" ,asal="16032" ,tujuan="MY" ,dok1="Rekomendasi" ,dok2="Health Certificate" ,dok3="SK Penetapan IKH" ,dok4="rahasia" ,stat1="0" ,stat2="0" ,stat3="0" ,stat4="1" ,kelamin="1" ,discharge="1" ,nilaipulsus="41" ,pulsus="41" ,nilairespirasi="3" ,nilailimfo="1" ,nilaimukosa="456" ,nilaiturgor="a" ,nilailesi="64" ,bulukulit="putih - hitam - kuning" ,keterangan="tidak menunjukkan gejala abnormalitas yang menciri" ,respirasi="3" ,mukosa="456" ,limfo="1" ,lesi="64" where urtx="18""
+INPUT ADD
+HASIL DESCENDING (SUDAH)
+MEDIA PEMBAWA TIDAK BOLEH ADA DEFAULT, KOSONG DULU (SUDAH)
+Edit Pulsus sudah
+TGL OPERASIONAL BELUM
+
+
+
+
+
+
+
+
+
+
+
