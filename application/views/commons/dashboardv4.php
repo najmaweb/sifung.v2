@@ -204,7 +204,50 @@
         <?php }?>
 
 
+        <div class="row">
+          <div class="col-lg-6">
 
+          <!-- start of card benang -->
+          <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Online Store Visitors</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">820</span>
+                    <span>Visitors Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                    <span class="text-muted">Since last week</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This Week
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last Week
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- end of card benang -->
+          </div>
+        </div>
         <div class="row">
           <div class="col-lg-6">
           <div class="card">
@@ -277,8 +320,8 @@
 
           </div>
           <div class="col-lg-6">
-                        <!-- solid sales graph -->
-                        <div class="card">
+            <!-- solid sales graph -->
+            <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Rincian vs Target</h3>
 
@@ -346,7 +389,6 @@
               <!-- /.footer -->
             </div>
             <!-- /.card -->
-
           </div>
         </div>
       </div>
@@ -382,8 +424,10 @@
 <script src="/assets/vendor/adminLTE/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/assets/vendor/adminLTE/dist/js/demo.js"></script>
+<script src="/assets/js/commons.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/assets/js/dashboard/dashboardv2.js"></script>
+<script src="/assets/js/dashboard/dashboard3.js"></script>
 <script>
   $.ajax({
     url:'/rincian/tgopstoamount',
@@ -467,6 +511,16 @@
 </script>
 <script>
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    $.ajax({
+      url:'/dashboard/get',
+      dataType:'json'
+    })
+    .done(res=>{
+      console.log("Resulte",res)
+    })
+    .fail(err=>{
+      console.log("Err",err)
+    })
   var pieData = {
     labels: ["D2022","D2033","D2035"],
     datasets: [

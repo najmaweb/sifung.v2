@@ -27,8 +27,9 @@ Class Header extends CI_Controller{
     }
     function get_datas(){
         $id = $this->uri->segment(3);
-        $objs = $this->mheader->getCustom(array('a.id'=>$id));
+        $objs = $this->mheader->getCustom(array('a.id'=>$id,'a.pelaksana'=>$_SESSION['user']));
         echo '{"data":'.json_encode($objs['res']).'}';
+        //echo $objs['sql'];
     }
     function save(){
         $params = $this->input->post();

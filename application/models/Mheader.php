@@ -15,7 +15,7 @@ Class Mheader extends CI_Model{
         $sql = 'select a.id,a.urt,a.kdbutir,a.kdsubutir,b.butiranak,';
         $sql.= 'a.dasar,a.pelaksana,e.fnme namapelaksana,e.jbtn jbtnpelaksana,c.fnme pemberi,c.jbtn,';
         $sql.= 'a.lokasi,h.namaunit,date_format(a.mulai,"%d %b %Y")mulai,date_format(a.selesai,"%d %b %Y")selesai,a.ringkasan, nops,tgops,f.ak,f.nmbutir,g.rgnm, ';
-        $sql.= 'count(a.id) jmlsubutir ';
+        $sql.= 'count(d.id) jmlsubutir ';
         $sql.= 'from header a ';
         $sql.= 'left outer join butiranak b on b.kdbutir=a.kdbutir and b.kdsubutir=a.kdsubutir ';
         $sql.= 'left outer join progev.pegwdata c on c.unip=a.pemberi ';

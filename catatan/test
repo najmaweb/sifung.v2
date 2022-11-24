@@ -32,8 +32,11 @@ MEDIA PEMBAWA TIDAK BOLEH ADA DEFAULT, KOSONG DULU (SUDAH)
 Edit Pulsus sudah
 TGL OPERASIONAL BELUM
 
-
-
+2022-11-22
+SELECT pelaksana,a.kdsubutir,tgops,COUNT(urtx)frek FROM rincian01 a 
+LEFT OUTER JOIN header b ON b.kdsubutir=a.kdsubutir 
+GROUP BY a.kdsubutir,tgops
+ORDER BY tgops ;
 
 
 

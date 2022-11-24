@@ -74,3 +74,30 @@ Array (
 
 	select a.unip,a.fnme,a.jbfg,a.jbtn,a.kdpel,a.kdupt,b.urjjfg,c.urjbfg from progev.pegwdata a left outer join progev.jenjang b on b.jjfg=a.jjfg left outer join progev.jabfung c on c.jbfg=a.jbfg where a.unip="197411212001121002" ;
 	
+
+
+SELECT pelaksana,a.kdsubutir,tgops,COUNT(urtx)frek FROM rincian01 a  LEFT OUTER JOIN header b ON b.kdsubutir=a.kdsubutir  GROUP BY a.kdsubutir,tgops  ORDER BY tgops ;
+
+
+
+{"data":
+[
+	{"id":"25","urt":"18","kdbutir":"D2035","kdsubutir":"b","butiranak":"Melakukan pemeriksaan organoleptik produk hewan","dasar":"121212","pelaksana":"197411212001121002","namapelaksana":"Budi Prasetya","jbtnpelaksana":"Dokter Hewan Karantina Ahli Muda","pemberi":"Masruchin","jbtn":"HAPUS","lokasi":"00400","namaunit":null,"mulai":"03 Oct 2022","selesai":"31 Oct 2022","ringkasan":"ztest","nops":null,"tgops":null,"ak":"0.003","nmbutir":"Melakukan tindakan pemeriksaan klinis hewan dan organoleptik, penilaian hasil pemeriksaan klinis hewan dan organoleptik dan menetapkan diagnosa","rgnm":null,"jmlsubutir":"1"},
+	{"id":"25","urt":"13","kdbutir":"D2035","kdsubutir":"a","butiranak":"Melakukan Pemeriksaan Klinis Hewan","dasar":"SK No: 123 Penempatan Tugas Fungsional Lingkup BBKP Surabaya","pelaksana":"197411212001121002","namapelaksana":"Budi Prasetya","jbtnpelaksana":"Dokter Hewan Karantina Ahli Muda","pemberi":"Cicik Sri Sukarsih","jbtn":"Kepala BBKP Surabaya","lokasi":"00403","namaunit":null,"mulai":"01 Jan 2022","selesai":"31 Mar 2022","ringkasan":"Secara umum kegiatan ini dilaksanakan sebagai bagian dari capaian target triwulan 1 tahun 2022. Laporan dari kegiatan pemeriksaan klinis ini bersumber dari kegiatan operasiona di Wilker Bandara Juanda.","nops":"222","tgops":"2022-01-01","ak":"0.003","nmbutir":"Melakukan tindakan pemeriksaan klinis hewan dan organoleptik, penilaian hasil pemeriksaan klinis hewan dan organoleptik dan menetapkan diagnosa","rgnm":null,"jmlsubutir":"14"}
+]
+}
+
+
+select a.id,a.urt,a.kdbutir,a.kdsubutir,b.butiranak,a.dasar,a.pelaksana,e.fnme namapelaksana,e.jbtn jbtnpelaksana,c.fnme pemberi,c.jbtn,a.lokasi,h.namaunit,date_format(a.mulai,"%d %b %Y")mulai,date_format(a.selesai,"%d %b %Y")selesai,a.ringkasan, nops,tgops,f.ak,f.nmbutir,g.rgnm, count(a.id) jmlsubutir 
+from header a 
+left outer join butiranak b on b.kdbutir=a.kdbutir and b.kdsubutir=a.kdsubutir 
+left outer join progev.pegwdata c on c.unip=a.pemberi 
+left outer join rincian01 d on d.urt=a.urt 
+left outer join progev.pegwdata e on e.unip=a.pelaksana 
+left outer join butir f on f.kdbutir = a.kdbutir 
+left outer join tbldaerah g on g.rgkd=a.lokasi 
+left outer join progev.tblupt h on h.kdupt=c.kdupt 
+where a.id=25 and a.pelaksana="197411212001121002" group by a.urt order by a.id,a.urt desc
+
+
+SELECT pelaksana,a.kdsubutir,tgops,COUNT(urtx)frek FROM rincian01 a LEFT OUTER JOIN header b ON b.kdsubutir=a.kdsubutir ORDER BY tgops ;

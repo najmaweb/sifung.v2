@@ -137,6 +137,7 @@ Class Rincian extends CI_Controller{
         $urt = $this->uri->segment(4);
         $objs = $this->mrincian->getme(array('a.id'=>$id,'a.urt'=>$urt));
         echo '{"data":'.json_encode($objs['res']).'}';
+        //echo $objs['sql'];
     }
     function get(){
         $params = $this->input->post();
