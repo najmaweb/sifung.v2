@@ -74,10 +74,10 @@
                     <th width="5%">ID</th>
                     <th width="5%">Kode</th>
                     <th width="50">Butir Kegiatan</th>
-                    <th width="5%">Total</th>
                     <th width="5%">Target</th>
                     <th width="5%">Capaian</th>
                     <th width="5%">Persentase</th>
+                    <th width="5%">Total AK</th>
                     <th width="25%" class="taksi">Aksi</th>
                   </tr>
                   </thead>
@@ -88,10 +88,10 @@
                     <th>ID</th>
                     <th>Kode</th>
                     <th>Butir Kegiatan</th>
-                    <th>Total</th>
                     <th>Target</th>
                     <th>Capaian</th>
                     <th>Persentase</th>
+                    <th>Total AK</th>
                     <th class="taksi">Aksi</th>
                   </tr>
                   </tfoot>
@@ -177,10 +177,10 @@ var tblcapaian = $("#capaian").DataTable({
       {"data":"id"},
       {"data":"kdbutir"},
       {"data":"nmbutir"},
-      {"data":"total"},
       {"data":"target"},
       {"data":"bnyrincian"},
       {"data":"persentase"},
+      {"data":"total"},
     ],
     "columnDefs": [ 
       {

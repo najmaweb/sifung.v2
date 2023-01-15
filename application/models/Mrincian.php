@@ -23,12 +23,17 @@ Class Mrincian extends CI_Model{
         $sql.='case stat4 when "0" then "tidak absah" when "1" then "absah" end dstat4,';
         $sql.= 'a.pulsus,a.nilaipulsus,a.suhu,a.nilaisuhu,a.respirasi,a.nilairespirasi,a.nilailimfo,a.nilaimukosa,a.nilaiturgor,a.nilailesi,a.mukosa,a.limfo,a.turgor,a.lesi,a.diagnosa,a.tindaklanjut,';
         $sql.= 'a.jmlhewan,q.kdturgor,q.turgor mediaturgor,a.raba,p.sentuh,m.kdriwayat,m.riwayat,a.angkutan,k.angkut,a.kondisiangkutan,l.sikon,a.media,a.pemilik,a.jmltotal, a.ketklinis,';
+        $sql.= 'a.jmlkemasan,a.jnskemasan,';
         $sql.= 'a.jnsPPK,PPK,a.tujuan kdtujuan,case length(a.tujuan) when 2 then i.urneg when 5 then j.rgnm end tujuan,';
         $sql.= 'a.asal kdasal,case length(a.asal) when 2 then g.urneg when 5 then h.rgnm end asal, ';
         $sql.= 'catatan,e.nipem,e.suhu mediasuhu,e.pulsus mediapulsus,e.respirasi mediarespirasi,f.nmbutir,a.kesimpulan, a.tmst,';
         $sql.= 'kdrekam,r.rekam ,s.jnskelamin,t.adadischarge, ';
         $sql.= 'pensuhu.urpensuhu,penpulsus.urpenpulsus,penrespirasi.urpenrespirasi,penlimfo.urpenlimfo,penmukosa.urpenmukosa,penturgor.urpenturgor,penlesi.urpenlesi, ';
-        $sql.= 'tblstatdok1.sikonstatus sikonstatus1,tblstatdok2.sikonstatus sikonstatus2,tblstatdok3.sikonstatus sikonstatus3,tblstatdok4.sikonstatus sikonstatus4 ';
+        $sql.= 'tblstatdok1.sikonstatus sikonstatus1,tblstatdok2.sikonstatus sikonstatus2,tblstatdok3.sikonstatus sikonstatus3,tblstatdok4.sikonstatus sikonstatus4, ';
+        $sql.= 'kemasan,label,warna,rasa,segel,konsistensi,bau,temperatur, ';
+        $sql.= 'nilaikemasan,nilaisegel,nilailabel,nilaitemperatur,nilaikondisiumum,nilaiph,ph,nilaikonsistensi,nilaiwarna,nilaibau,nilairasa,kondisiumum, ';
+        $sql.= 'penkemas.urpenkemas,pensegel.urpensegel,penkonsistensi.urpenkonsistensi,penwarna.urpenwarna,penlabel.urpenlabel, ';
+        $sql.= 'penbau.urpenbau,penrasa.urpenrasa,penpH.urpenpH,pensuhu.urpensuhu,penkondisiumum.urpenkondisiumum,pentemperatur.urpentemperatur ';
         $sql.= 'from rincian01 a ';
         $sql.= 'left outer join header b on b.urt = a.urt ';
         $sql.= 'left outer join butiranak c on c.kdbutir = b.kdbutir and c.kdsubutir=b.kdsubutir ';
@@ -60,6 +65,17 @@ Class Mrincian extends CI_Model{
         $sql.= 'left outer join tblstatdok tblstatdok2 on tblstatdok2.kdstatus=a.stat2 ';
         $sql.= 'left outer join tblstatdok tblstatdok3 on tblstatdok3.kdstatus=a.stat3 ';
         $sql.= 'left outer join tblstatdok tblstatdok4 on tblstatdok4.kdstatus=a.stat4 ';
+
+        $sql.= 'left outer join pentemperatur on pentemperatur.kdpentemperatur=nilaitemperatur ';
+        $sql.= 'left outer join penkemas on penkemas.kdpenkemas=nilaikemasan ';
+        $sql.= 'left outer join pensegel on pensegel.kdpensegel=nilaisegel ';
+        $sql.= 'left outer join penlabel on penlabel.kdpenlabel=nilailabel ';
+        $sql.= 'left outer join penkonsistensi on penkonsistensi.kdpenkonsistensi=nilaikonsistensi ';
+        $sql.= 'left outer join penwarna on penwarna.kdpenwarna=nilaiwarna ';
+        $sql.= 'left outer join penbau on penbau.kdpenbau=nilaibau ';
+        $sql.= 'left outer join penrasa on penrasa.kdpenrasa=nilairasa ';
+        $sql.= 'left outer join penpH on penpH.kdpenpH=nilaiph ';
+        $sql.= 'left outer join penkondisiumum on penkondisiumum.kdpenkondisiumum=nilaikondisiumum ';
         $sql.= 'where ' . implode(' and ',$condition) . ' ';
         $sql.= 'order by a.id,a.urt,a.urtx desc ';
         $ci = & get_instance();
@@ -169,4 +185,30 @@ Class Mrincian extends CI_Model{
             return $result;
         }
         return false;
-    }}
+    }
+    function duplicate($urtx){
+        $sql = "insert into rincian01 ";
+
+        $sql.= "( id, urt, kdsubutir, nops, tgops, jnsPPK, media, jmltotal, asal, tujuan, pemilik, ";
+        $sql.= "dok1, dok2, dok3, dok4, stat1, stat2, stat3, stat4, jmlhewan, kelamin, ";
+        $sql.= "bulukulit, kondisi, nafsu, discharge, keterangan, suhu, pulsus, respirasi, limfo, mukosa, turgor, lesi, ketklinis, ";
+        $sql.= "nilaisuhu, nilaipulsus, nilairespirasi, nilailimfo, nilaimukosa, nilaiturgor, nilailesi, ";
+        $sql.= "diagnosa, tindaklanjut, jmlkemasan, jnskemasan, kemasan, segel, label, konsistensi, warna, bau, rasa, temperatur, ph, kondisiumum, ";
+        $sql.= "nilaikondisiumum, nilaikemasan, nilaisegel, nilailabel, nilaikonsistensi, nilaiwarna, nilaibau, nilairasa, nilaitemperatur, nilaiph, ";
+        $sql.= "tmst, riwayat, raba, catatan, rekam, kesimpulan, angkutan, kondisiangkutan, penampakan ) ";
+
+        $sql.= "SELECT id, urt, kdsubutir, nops, tgops, jnsPPK, media, jmltotal, asal, tujuan, pemilik, ";
+        $sql.= "dok1, dok2, dok3, dok4, stat1, stat2, stat3, stat4, jmlhewan, kelamin, ";
+        $sql.= "bulukulit, kondisi, nafsu, discharge, keterangan, suhu, pulsus, respirasi, limfo, mukosa, turgor, lesi, ketklinis, ";
+        $sql.= "nilaisuhu, nilaipulsus, nilairespirasi, nilailimfo, nilaimukosa, nilaiturgor, nilailesi, ";
+        $sql.= "diagnosa, tindaklanjut, jmlkemasan, jnskemasan, kemasan, segel, label, konsistensi, warna, bau, rasa, temperatur, ph, kondisiumum, ";
+        $sql.= "nilaikondisiumum, nilaikemasan, nilaisegel, nilailabel, nilaikonsistensi, nilaiwarna, nilaibau, nilairasa, nilaitemperatur, nilaiph, ";
+        $sql.= "tmst, riwayat, raba, catatan, rekam, kesimpulan, angkutan, kondisiangkutan, penampakan FROM rincian01 ";
+        $sql.= "where urtx= '".$urtx."'";
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return array(
+            'sql'=>$sql,'res'=>'ok'
+        );
+    }
+}

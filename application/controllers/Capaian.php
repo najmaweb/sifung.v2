@@ -30,7 +30,7 @@ Class Capaian extends CI_Controller{
         $this->load->view('capaian/list', $data);
     }
     function get_datas(){
-        $objs = $this->mcapaian->get2(array('a.pelaksana'=>'197411212001121002'));
+        $objs = $this->mcapaian->get2(array('a.pelaksana'=>$_SESSION['user']));
 //        $objs = $this->mcapaian->get2(array('a.pelaksana'=>$_SESSION['user']));
         echo '{"data":'.json_encode($objs['res']).'}';
     }

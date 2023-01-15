@@ -64,7 +64,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title_" id="rtest">Rincian Kegiatan</h3>
-                <h5><?php echo $header->butiranak;?></h5>
+                <h5><?php echo '(' . $header->kdsubutir . ') ' . $header->butiranak;?></h5>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -81,16 +81,6 @@
                   </thead>
                   <tbody>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th></th>
-                    <th>Tgl Operasional</th>
-                    <th>No Operasional</th>
-                    <th>Jenis Kegiatan</th>
-                    <th>Media Pembawa</th>
-                    <th>Aksi</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -113,11 +103,11 @@
   </aside>
   <!-- /.control-sidebar -->
 </div>
-<?php $this->load->view("rincian/modal-add");?>
 <?php $this->load->view("rincian/modal-konfirmasi");?>
-<?php $this->load->view("rincian/modal-edit");?>
+
 <?php $this->load->view("rincian/modal-warning");?>
 <script>let curuser='<?php echo $_SESSION['user']?>'</script>
+<script>let kdsubutir='<?php echo $header->kdsubutir;?>'</script>
 <!-- ./wrapper -->
 <!-- jQuery -->
 <script src="/assets/vendor/adminLTE/plugins/jquery/jquery.min.js"></script>
@@ -161,7 +151,36 @@
 <script>let urt=<?php echo $urt;?></script>
 <script>let parent=<?php echo $parent;?></script>
 <script>let kdbutir = "<?php echo $header->kdbutir;?>"</script>
-<script>let kdsubutir = "<?php echo $header->kdsubutir;?>"</script>
-<script src='/assets/js/rincian/list.js?v=5'></script>
+
+
+
+<?php switch($header->kdsubutir){
+  case "a":
+    $this->load->view("rincian/modal-adda/main");
+    $this->load->view("rincian/modal-edita/main");?>
+    <script>
+    </script>
+    <script src='/assets/js/rincian/lista.js?v=6'></script>
+    <?php
+    break;
+  case "b":?>
+    <?php
+    $this->load->view("rincian/modal-addb/main");
+    $this->load->view("rincian/modal-editb/main");//bikin layar ga penuh
+    ?>
+    <script src='/assets/js/rincian/listb.js?v=10'></script>
+    <?php
+    break;
+}?>
+
+<?php switch($header->kdsubutir){
+  case "a":
+?>
+  
+  <?php break;?>
+<?php case "b":?>
+
+  <?php break;?>
+<?php }?>
 </body>
 </html>

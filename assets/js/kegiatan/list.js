@@ -25,6 +25,10 @@ console.log('KDBUTIR',kdbutir)
       ],
       "columnDefs": [ 
         {
+          "target":1,
+          "class":"kdsubutir"
+        },
+        {
             "targets": 7,
             "data": null,
             "defaultContent": "<button class='btnedit btn btn-warning btn-sifung'>Edit</button>&nbsp;<button class='btnremove btn btn-danger btn-sifung'>Hapus</button>&nbsp;<button class='btnisi btn btn-primary btn-sifung'>Isi</button>&nbsp;<button class='btnrpt btn btn-primary btn-sifung'>Cetak</button>"
@@ -102,9 +106,11 @@ console.log('KDBUTIR',kdbutir)
       $('#header tbody tr').removeClass('selected')
       let x = $(this).stairUp({level:2})
       x.addClass('selected')
+      kdsubutir = x.find(".kdsubutir").text()
       urt = tblheader.row(x).data().urt
+      console.log("KDSubUTIR",kdsubutir)
       //window.location.href = '/rincian/rreport/'+urt
-      window.location.href = '/kegiatan/pdf/'+urt
+      window.location.href = '/kegiatan/pdf/'+urt+'/'+kdsubutir
     })
 
     

@@ -34,7 +34,8 @@ Class Rincian extends CI_Controller{
             'a.urt'=>$this->uri->segment(3)
         ));
         $parent = $this->mrincian->getparent($this->uri->segment(3));
-        $header = $this->mheader->getCustom(array('a.id'=>$parent));
+        $header = $this->mheader->getCustom(array('a.urt'=>$this->uri->segment(3)));
+        $theader = $header['res'][0];
         $data['header'] = $header['res'][0];
         $data['parent'] = $parent;
         $butiranak = $this->msubbutir->getwithtext(array('kdbutir'=>$header['res'][0]->kdbutir,'kdsubutir'=>$header['res'][0]->kdsubutir));
@@ -50,9 +51,18 @@ Class Rincian extends CI_Controller{
             array('title'=>'Rincian','url'=>'#')
         );
         $mmedia = $this->mmedia->getcustom();
-        $data['media'] =  $this->elementhelper->paramstocombo($this->mmedia->getcustom(),array(
-            'key'=>'kdpem','val'=>'nipem'
-        ));
+        switch($theader->kdsubutir){
+            case 'a':
+                $data['media'] =  $this->elementhelper->paramstocombo($this->mmedia->getcustom(),array(
+                    'key'=>'kdpem','val'=>'nipem'
+                ));        
+                break;
+            case 'b':
+                $data['media'] =  $this->elementhelper->paramstocombo($this->mmedia->getcustom3(array('substring(kdpem,1,1)'=>'>1')),array(
+                    'key'=>'kdpem','val'=>'nipem'
+                ));        
+                break;
+        }
         if($me['cnt']>0){
             $data['me'] = $me['res'];
         }else{
@@ -130,6 +140,33 @@ Class Rincian extends CI_Controller{
         $data['discharge'] = $this->elementhelper->paramstocombo($this->crud->gets('tbldischarge',['kddischarge ','adadischarge']),array(
             'key'=>'kddischarge','val'=>'adadischarge'
         ));
+        $data['penkemasan'] = $this->elementhelper->paramstocombo($this->crud->gets('penkemas',['kdpenkemas','urpenkemas']),array(
+            'key'=>'kdpenkemas','val'=>'urpenkemas'
+        ));
+        $data['penlabel'] = $this->elementhelper->paramstocombo($this->crud->gets('penlabel',['kdpenlabel','urpenlabel']),array(
+            'key'=>'kdpenlabel','val'=>'urpenlabel'
+        ));
+        $data['pensegel'] = $this->elementhelper->paramstocombo($this->crud->gets('pensegel',['kdpensegel','urpensegel']),array(
+            'key'=>'kdpensegel','val'=>'urpensegel'
+        ));
+        $data['penkonsistensi'] = $this->elementhelper->paramstocombo($this->crud->gets('penkonsistensi',['kdpenkonsistensi','urpenkonsistensi']),array(
+            'key'=>'kdpenkonsistensi','val'=>'urpenkonsistensi'
+        ));
+        $data['penwarna'] = $this->elementhelper->paramstocombo($this->crud->gets('penwarna',['kdpenwarna','urpenwarna']),array(
+            'key'=>'kdpenwarna','val'=>'urpenwarna'
+        ));
+        $data['penbau'] = $this->elementhelper->paramstocombo($this->crud->gets('penbau',['kdpenbau','urpenbau']),array(
+            'key'=>'kdpenbau','val'=>'urpenbau'
+        ));
+        $data['penrasa'] = $this->elementhelper->paramstocombo($this->crud->gets('penrasa',['kdpenrasa','urpenrasa']),array(
+            'key'=>'kdpenrasa','val'=>'urpenrasa'
+        ));
+        $data['penpH'] = $this->elementhelper->paramstocombo($this->crud->gets('penpH',['kdpenpH','urpenpH']),array(
+            'key'=>'kdpenpH','val'=>'urpenpH'
+        ));
+        $data['penkondisiumum'] = $this->elementhelper->paramstocombo($this->crud->gets('penkondisiumum',['kdpenkondisiumum','urpenkondisiumum']),array(
+            'key'=>'kdpenkondisiumum','val'=>'urpenkondisiumum'
+        ));
         $this->load->view('rincian/list',$data);
     }
     function get_datas(){
@@ -197,5 +234,9 @@ Class Rincian extends CI_Controller{
         $params['pelaksana'] = $_SESSION['user'];
         $params['kdbutirs'] = $kdbutirs['kdbutirs'];//array('D2022','D2033','D2035');
         echo json_encode($this->mrincian->tgopstoamountdetail($params));
+    }
+    function duplicate(){
+        $urtx = $this->uri->segment(3);
+        echo json_encode($this->mrincian->duplicate($urtx));
     }
 }

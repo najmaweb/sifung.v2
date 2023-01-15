@@ -89,18 +89,6 @@
                   </thead>
                   <tbody>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>ID</th>
-                    <th>Kode</th>
-                    <th>Detail Butir Kegiatan</th>
-                    <th>Lokasi</th>
-                    <th>Mulai</th>
-                    <th>Selesai</th>
-                    <th>Jml</th>
-                    <th class="taksi">Aksi</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->

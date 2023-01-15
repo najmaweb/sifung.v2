@@ -4,6 +4,7 @@ Class Dashboard extends CI_Controller{
         parent::__construct();
         $this->load->library('auth');
         $this->load->model('mdashboard');
+        $this->load->model('mheader');
     }
     function index(){
         $this->auth->checksession();
@@ -16,12 +17,20 @@ Class Dashboard extends CI_Controller{
             array('title'=>'Dashboard','url'=>'/dashboard'),
             array('title'=>'','url'=>'/')
         );
-        $this->load->view('commons/dashboardv5',$data);
+        $this->load->view('commons/dashboardv6',$data);
+    }
+    function getheaders(){
+        $objs = $this->mheader->get(array('1'=>'1'));
+        echo '{"data":'.json_encode($objs['rows']).'}';
     }
     function get(){
         echo json_encode($this->mdashboard->get());
     }
     function getsubutirs(){
         echo json_encode($this->mdashboard->getsubutirs());
+    }
+    function hehe(){
+        $dashboard = $this->mheader->getdashboard(array('pelaksana'=>$_SESSION['user']));
+        echo '{"data":'.json_encode($dashboard['res']).'}';
     }
 }

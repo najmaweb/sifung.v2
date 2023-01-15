@@ -1,5 +1,6 @@
 <?php
 Class Kegiatan extends CI_Controller{
+    var $php8;
     function __construct(){
         parent::__construct();
         $this->load->model('historykegiatan');
@@ -14,7 +15,12 @@ Class Kegiatan extends CI_Controller{
         $this->load->library('fpdfmulticell');
         $this->load->library('sifungdate');
         //$this->load->library('wordwrap');
-        $this->load->library('pujipdf2');
+        $this->php8 = true;
+        if($this->php8){
+            $this->load->library('mympdf');
+        }else{
+            $this->load->library('pujipdf2');
+        }
 
     }
 	function index(){
@@ -114,31 +120,53 @@ Class Kegiatan extends CI_Controller{
     }
     function pdf(){
         $urt = $this->uri->segment(3);
+        $kdsubutir = $this->uri->segment(4);
         $header = $this->mheader->getCustom(array('a.urt'=>$urt));
-        $rincian = $this->mrincian->getme(array('a.urt'=>$this->uri->segment(3)));
+        $rincian = $this->mrincian->getme(array('a.urt'=>$urt));
         $data['rincian'] = $rincian['res'];
         $data['header'] = $header['res'][0];
         $butiranak = $this->msubbutir->getwithtext(array('kdbutir'=>$header['res'][0]->kdbutir,'kdsubutir'=>$header['res'][0]->kdsubutir));
         $data['butiranak'] = $butiranak['res'][0];
-        
-        $this->load->view('kegiatan/pujipdf2',$data);
+        switch($header['res'][0]->kdsubutir){
+            case "a":
+                if($this->php8){
+                    $this->load->view('kegiatan/pujipdf2aportrait',$data);
+                }else{
+                    $this->load->view('kegiatan/pujipdf2a',$data);
+                }
+            break;
+            case "b":
+                if($this->php8){
+                    $this->load->view('kegiatan/pujipdf2bportrait',$data);
+                }else{
+                    $this->load->view('kegiatan/pujipdf2b',$data);
+                }
+            break;
+        }
     }
     function xls(){
         $this->load->model('mrincian');
         $urt = $this->uri->segment(3);
         $header = $this->mheader->getCustom(array('a.urt'=>$urt));
-        $rincian = $this->mrincian->getme(array('a.urt'=>$this->uri->segment(3)));
+        $rincian = $this->mrincian->getme(array('a.urt'=>$urt));
         $data['rincian'] = $rincian['res'];
         $data['header'] = $header['res'][0];
         $butiranak = $this->msubbutir->getwithtext(array('kdbutir'=>$header['res'][0]->kdbutir,'kdsubutir'=>$header['res'][0]->kdsubutir));
         $data['butiranak'] = $butiranak['res'][0];
-        $this->load->view('kegiatan/xls',$data);
+        switch($header['res'][0]->kdsubutir){
+            case "a":
+                $this->load->view('kegiatan/xlsa',$data);
+            break;
+            case "b":
+                $this->load->view('kegiatan/xlsb',$data);
+            break;
+            }
     }
     function pdfdraft1(){
         $urt = $this->uri->segment(3);
         $header = $this->mheader->getCustom(array('a.urt'=>$urt));
         $data['header'] = $header['res'][0];
-        $rincian = $this->mrincian->getme(array('a.urt'=>$this->uri->segment(3)));
+        $rincian = $this->mrincian->getme(array('a.urt'=>$urt));
         $data['rincian'] = $rincian['res'];
         $butiranak = $this->msubbutir->getwithtext(array('kdbutir'=>$header['res'][0]->kdbutir,'kdsubutir'=>$header['res'][0]->kdsubutir));
         $data['butiranak'] = $butiranak['res'][0];
@@ -148,7 +176,7 @@ Class Kegiatan extends CI_Controller{
         $urt = $this->uri->segment(3);
         $header = $this->mheader->getCustom(array('a.urt'=>$urt));
         $data['header'] = $header['res'][0];
-        $rincian = $this->mrincian->getme(array('a.urt'=>$this->uri->segment(3)));
+        $rincian = $this->mrincian->getme(array('a.urt'=>$urt));
         $data['rincian'] = $rincian['res'];
         $butiranak = $this->msubbutir->getwithtext(array('kdbutir'=>$header['res'][0]->kdbutir,'kdsubutir'=>$header['res'][0]->kdsubutir));
         $data['butiranak'] = $butiranak['res'][0];

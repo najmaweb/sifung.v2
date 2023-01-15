@@ -1,0 +1,23 @@
+2022-12-01
+PENAMBAHAN FORM INPUT UNTUK RINCIAN B
+TIDAK ADA KOLOM PULSUS, TURGOR, DAN LIMFO
+TAB 4 B DAN 5 ADALAH ORGANOLEPTIK DAN PENILAIAN ORGANOLEPTIK
+ORGANOLEPTIK TERDIRI ATAS:
+KEUTUHAN KEMASAN
+KEUTUHAN SEGEL
+KECUKUPAN LABEL
+KONSISTENSI
+
+
+kolom-kolom di table RINCIAN:
+SELECT id, urt, urtx, kdsubutir, nops, tgops, jnsPPK, media, jmltotal, asal, tujuan, pemilik, dok1, dok2, dok3, dok4, stat1, stat2, stat3, stat4, jmlhewan, kelamin, bulukulit, kondisi, nafsu, discharge, keterangan, suhu, pulsus, respirasi, limfo, mukosa, turgor, lesi, ketklinis, nilaisuhu, nilaipulsus, nilairespirasi, nilailimfo, nilaimukosa, nilaiturgor, nilailesi, diagnosa, tindaklanjut, jmlkemasan, jnskemasan, kemasan, segel, label, konsistensi, warna, bau, rasa, temperatur, ph, kondisiumum, nilaikemasan, nilaisegel, nilailabel, nilaikonsistensi, nilaiwarna, nilaibau, nilairasa, nilaitemperatur, nilaiph, tmst, riwayat, raba, catatan, rekam, kesimpulan, angkutan, kondisiangkutan, penampakan
+	FROM rincian01
+
+
+	SELECT id, urt, kdbutir, kdsubutir, dasar, pelaksana, pemberi, lokasi, mulai, selesai, ringkasan, tmst
+	FROM header
+
+
+202212/BUD/00499 kabel grounding ---> quantity nya direvisi 40 bukan 1
+202212/BUD/00502 = Skun 16/25/35 mm --> bukan Skun tapi direvisi menjadi ground root
+dan harga nya bukan 2500 tapi 100.000

@@ -36,7 +36,7 @@ class Home extends CI_Controller {
             $_SESSION["user"] = $params["user"];
             $_SESSION['kdupt'] = $pegawai->kdupt;
             $_SESSION['kdpel'] = $pegawai->kdpel;
-            redirect('/Capaian');
+            redirect('/Dashboard');
     }else{
             echo "not authenticated";
         }

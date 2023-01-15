@@ -284,7 +284,7 @@ function narasiDokumen($c,$rinci,$initheight = 25){
     $this->cell(15,5,is_null($rinci->dok4)?"":$rinci->dok4);
     $this->cell(15,5,is_null($rinci->dstat4)?"":$rinci->dstat4);
 }
-function narasiPresen($c,$rinci,$initheight = 25){
+function narasiPresenKlinis($c,$rinci,$initheight = 25){
     if($c%2===1){
         $this->SetXY(140,100);
     }else{
@@ -340,6 +340,29 @@ function narasiPresen($c,$rinci,$initheight = 25){
     }
     $this->cell(15,5,"Keterangan");
     $this->cell(15,5,is_null($rinci->keterangan)?"":":".$rinci->keterangan);
+}
+function narasiPresenOrganoleptik($c,$rinci,$initheight = 25){
+    if($c%2===1){
+        $this->SetXY(140,100);
+    }else{
+        $this->SetXY(140,$initheight);
+    }
+    $this->cell(15,5,"Jumlah Kemasan");
+    $this->cell(15,5,is_null($rinci->jmlkemasan)?"":":".$rinci->jmlkemasan);
+
+    if($c%2===1){
+        $this->SetXY(140,105);
+    }else{
+        $this->SetXY(140,$initheight+5);
+    }
+    $this->cell(15,5,"Jenis Kemasan");
+    $this->cell(15,5,is_null($rinci->jnskemasan)?"":":".$rinci->jnskemasan);
+
+    if($c%2===1){
+        $this->SetXY(140,110);
+    }else{
+        $this->SetXY(140,$initheight+10);
+    }
 }
 function narasiKlinis($c,$rinci,$initheight = 25){
     if($c%2===1){
@@ -456,7 +479,24 @@ function narasiPenilaianKlinis($c,$rinci,$initheight = 25){
     $this->cell(15,5,"Lesi");
     $this->cell(15,5,is_null($rinci->urpenlesi)?"":":".$rinci->urpenlesi);
 }
-function penetapanDiagnosa($c,$rinci,$initheight = 25){
+function penetapanDiagnosaKlinis($c,$rinci,$initheight = 25){
+    $this->SetFont('Times','',7);
+    if($c%2===1){
+        $this->SetXY(215,130);
+    }else{
+        $this->SetXY(215,$initheight);
+    }
+    $this->Cell(20,5,"Diagnosa akhir");
+    $this->Cell(30,5,is_null($rinci->diagnosa)?"":$rinci->diagnosa);
+    if($c%2===1){
+        $this->SetXY(215,100);
+    }else{
+        $this->SetXY(215,$initheight+20);
+    }
+    $this->Cell(20,5,"Tindak Lanjut");
+    $this->Cell(30,5,is_null($rinci->tindaklanjut)?"":$rinci->tindaklanjut);
+}
+function penetapanDiagnosaOrganoleptik($c,$rinci,$initheight = 25){
     $this->SetFont('Times','',7);
     if($c%2===1){
         $this->SetXY(215,130);
@@ -499,6 +539,120 @@ function createNarration(){
     $text.= "Hasil diagnosa: \n";
     $text.= "- "."Kesimpulan: Boleh di disribusikan \n";
     return $text;
+}
+function narasiOrganoleptik($c,$rinci,$initheight = 25){
+    if($c%2===1){
+        $this->SetXY(175,100);
+    }else{
+        $this->SetXY(175,$initheight);
+    }
+    $this->cell(15,5,"Keutuhan Kemasan");
+    $this->cell(15,5,is_null($rinci->kemasan)?"":":".$rinci->kemasan);
+
+    if($c%2===1){
+        $this->SetXY(175,105);
+    }else{
+        $this->SetXY(175,$initheight+5);
+    }
+    $this->cell(15,5,"Keutuhan Segel");
+    $this->cell(15,5,is_null($rinci->segel)?"":":".$rinci->segel);
+
+    if($c%2===1){
+        $this->SetXY(175,110);
+    }else{
+        $this->SetXY(175,$initheight+10);
+    }
+    $this->cell(15,5,"Label");
+    $this->cell(15,5,is_null($rinci->label)?"":":".$rinci->label);
+
+    if($c%2===1){
+        $this->SetXY(175,115);
+    }else{
+        $this->SetXY(175,$initheight+15);
+    }
+    $this->cell(15,5,"Konsistensi");
+    $this->cell(15,5,is_null($rinci->konsistensi)?"":":".$rinci->konsistensi);
+
+    if($c%2===1){
+        $this->SetXY(175,120);
+    }else{
+        $this->SetXY(175,$initheight+20);
+    }
+    $this->cell(15,5,"Warna");
+    $this->cell(15,5,is_null($rinci->warna)?"":":".$rinci->warna);
+
+    if($c%2===1){
+        $this->SetXY(175,125);
+    }else{
+        $this->SetXY(175,$initheight+25);
+    }
+    $this->cell(15,5,"Bau");
+    $this->cell(15,5,is_null($rinci->bau)?"":":".$rinci->bau);
+
+    if($c%2===1){
+        $this->SetXY(175,130);
+    }else{
+        $this->SetXY(175,$initheight+30);
+    }
+    $this->cell(15,5,"Rasa");
+    $this->cell(15,5,is_null($rinci->rasa)?"":":".$rinci->rasa);
+}
+function narasiPenilaianOrganoleptik($c,$rinci,$initheight = 25){
+    if($c%2===1){
+        $this->SetXY(195,100);
+    }else{
+        $this->SetXY(195,$initheight+5);
+    }
+    $this->cell(15,5,"Keutuhan Kemasan");
+    $this->cell(15,5,is_null($rinci->nilaikemasan)?"":":".$rinci->nilaikemasan);
+
+    if($c%2===1){
+        $this->SetXY(195,105);
+    }else{
+        $this->SetXY(195,$initheight+10);
+    }
+    $this->cell(15,5,"Keutuhan Segel");
+    $this->cell(15,5,is_null($rinci->nilaisegel)?"":":".$rinci->nilaisegel);
+
+    if($c%2===1){
+        $this->SetXY(195,110);
+    }else{
+        $this->SetXY(195,$initheight+15);
+    }
+    $this->cell(15,5,"Kecukupan Label");
+    $this->cell(15,5,is_null($rinci->nilailabel)?"":":".$rinci->nilailabel);
+
+    if($c%2===1){
+        $this->SetXY(195,115);
+    }else{
+        $this->SetXY(195,$initheight+20);
+    }
+    $this->cell(15,5,"Konsistensi");
+    $this->cell(15,5,is_null($rinci->nilaikonsistensi)?"":":".$rinci->nilaikonsistensi);
+
+    if($c%2===1){
+        $this->SetXY(195,120);
+    }else{
+        $this->SetXY(195,$initheight+25);
+    }
+    $this->cell(15,5,"Warna");
+    $this->cell(15,5,is_null($rinci->nilaiwarna)?"":":".$rinci->nilaiwarna);
+
+    if($c%2===1){
+        $this->SetXY(195,125);
+    }else{
+        $this->SetXY(195,$initheight+30);
+    }
+    $this->cell(15,5,"Bau");
+    $this->cell(15,5,is_null($rinci->nilaibau)?"":":".$rinci->nilaibau);
+
+    if($c%2===1){
+        $this->SetXY(195,130);
+    }else{
+        $this->SetXY(195,$initheight+35);
+    }
+    $this->cell(15,5,"Rasa");
+    $this->cell(15,5,is_null($rinci->nilairasa)?"":":".$rinci->nilairasa);
 }
 
 function butirTable($data)

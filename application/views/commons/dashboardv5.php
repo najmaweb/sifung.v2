@@ -50,46 +50,46 @@
         <!-- start of left part -->
           <div class="col-lg-12">
           <!-- start of card benang -->
-          <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Frekwensi Kegiatan Harian</h3>
+            <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Frekwensi Kegiatan Harian</h3>
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <?php if(1==2){?>
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">820</span>
-                    <span>Visitors Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 12.5%
+                <div class="card-body">
+                  <?php if(1==2){?>
+                  <div class="d-flex">
+                    <p class="d-flex flex-column">
+                      <span class="text-bold text-lg">820</span>
+                      <span>Visitors Over Time</span>
+                    </p>
+                    <p class="ml-auto d-flex flex-column text-right">
+                      <span class="text-success">
+                        <i class="fas fa-arrow-up"></i> 12.5%
+                      </span>
+                      <span class="text-muted">Since last week</span>
+                    </p>
+                  </div>
+                  <!-- /.d-flex -->
+                  <?php }?>
+                  <div class="position-relative mb-4">
+                    <canvas id="frekwensi_kegiatan_harian" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                    <span class="mr-2">
+                      <i class="fas fa-square text-primary"></i> This Week
                     </span>
-                    <span class="text-muted">Since last week</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-                <?php }?>
-                <div class="position-relative mb-4">
-                  <canvas id="frekwensi_kegiatan_harian" height="200"></canvas>
-                </div>
 
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This Week
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last Week
-                  </span>
+                    <span>
+                      <i class="fas fa-square text-gray"></i> Last Week
+                    </span>
+                  </div>
                 </div>
               </div>
+              <!-- end of card benang -->
             </div>
-            <!-- end of card benang -->
           </div>
-        </div>
         <!-- end of left part -->
         <!-- start of right part -->
         <div class="col-lg-12">
@@ -134,6 +134,48 @@
             <!-- end of card benang -->
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <table id="tResumeRincian">
+                <thead>
+                  <tr>
+                    <th>Jenis Kegiatan</th>
+                    <th>Januari</th>
+                    <th>Februari</th>
+                    <th>Maret</th>
+                    <th>April</th>
+                    <th>Mei</th>
+                    <th>Juni</th>
+                    <th>Juli</th>
+                    <th>Agustus</th>
+                    <th>September</th>
+                    <th>Oktober</th>
+                    <th>Nopember</th>
+                    <th>Desember</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>D2035</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>20</td>
+                    <td>25</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
         <!-- end of right part -->
       </div>
 
@@ -166,11 +208,41 @@
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="/assets/vendor/adminLTE/plugins/chart.js/Chart.min.js"></script>
+<!--DataTables-->
+<script src="/assets/vendor/adminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/vendor/adminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/vendor/adminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/assets/vendor/adminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/assets/vendor/adminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="/assets/vendor/adminLTE/dist/js/demo.js"></script>
-<script src="/assets/js/commons.js?v=1"></script>
+<script src="/assets/js/commons.js?v=2"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/assets/js/dashboard/dashboardv2.js"></script>
 <script src="/assets/js/dashboard/dashboardv3.js?v=1"></script>
+<script>
+  $('#tResumeRincian').DataTable({
+    paging:false,
+    lengthChange:false,searching:false,info:false,
+    ajax:{
+      url:'/dashboard/hehe'
+    },
+    columns:[
+      {"data":"kdbutir"},
+      {"data":"jan"},
+      {"data":"feb"},
+      {"data":"mar"},
+      {"data":"apr"},
+      {"data":"may"},
+      {"data":"jun"},
+      {"data":"jul"},
+      {"data":"ags"},
+      {"data":"sep"},
+      {"data":"okt"},
+      {"data":"nop"},
+      {"data":"des"}
+    ]
+  });
+</script>
 </body>
 </html>

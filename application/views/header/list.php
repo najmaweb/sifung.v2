@@ -85,18 +85,6 @@
                     </td>
                   </tr>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                  <th>ID</th>
-                    <th>Pelaksana</th>
-                    <th>Kd Butir</th>
-                    <th>Target</th>
-                    <th>Awal</th>
-                    <th>Akhir</th>
-                    <th>Aksi</th>
-                    <th>Aksi</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->

@@ -1,49 +1,96 @@
 /* global Chart:false */
 renderGraphic = obj => {
   console.log("frek",obj)
-  labels = obj.map(ob=>{
-    if(typeof ob.tgops === 'string'|| ob.tgops instanceof String)
-    {return "he"}else
-    {return ob.tgops}
+  tgopsarray = []
+  obj.forEach(element => {
+    element.tgops.forEach(el=>{
+      if(typeof el === 'string'|| el instanceof String)
+      tgopsarray.push(el)
+    })
   })
+  tgops_array = tgopsarray.filter((v,i,x)=>{
+    return x.indexOf(v)===i
+  })
+  datazet = obj.map(ob=>{
+    return {
+      'type': 'line',
+      'data': ob.vops,//[100, 120, 170, 167, 180, 177, 160],
+      'backgroundColor': 'transparent',
+      'borderColor': ob.borderColor,
+      'pointBorderColor': ob.borderColor,//'#007bff',
+      'pointBackgroundColor': ob.borderColor,//'#007bff',
+      'fill': true,
+      'label':ob.label,
+       pointHoverBackgroundColor: '#007bff',
+       pointHoverBorderColor    : '#007bff'
+    } 
+  })
+
+  console.log('Datazet',datazet)
   //SomeArrayValues.filter(x=> x.id !== idNameDetailsColorDto.id).map(ids => (ids.id))
-  console.log('labels',labels)
   var $visitorsChart = $('#frekwensi_kegiatan_harian')
   // eslint-disable-next-line no-unused-vars
   var visitorsChart = new Chart($visitorsChart, {
     data: {
-      labels: obj[0].tgops,
-      datasets: obj.map(ob=>{
+      labels:  ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],//tgops_array,
+      datasets: /*obj.map(ob=>{
         return {
-          type: 'line',
-          data: ob.vops,//[100, 120, 170, 167, 180, 177, 160],
-          backgroundColor: 'transparent',
-          borderColor: ob.borderColor,
-          pointBorderColor: '#007bff',
-          pointBackgroundColor: '#007bff',
-          fill: false,
-          label:ob.label
-          // pointHoverBackgroundColor: '#007bff',
-          // pointHoverBorderColor    : '#007bff'
+          'type': 'line',
+          'data': ob.vops,//[100, 120, 170, 167, 180, 177, 160],
+          'backgroundColor': 'transparent',
+          'borderColor': ob.borderColor,
+          'pointBorderColor': ob.borderColor,//'#007bff',
+          'pointBackgroundColor': ob.borderColor,//'#007bff',
+          'fill': true,
+          'label':ob.label,
+           pointHoverBackgroundColor: '#007bff',
+           pointHoverBorderColor    : '#007bff'
         } 
-      })
+      })*/
+
+      [{
+        type: 'line',
+        label:'a',
+        data: [100, 120, 170, 167, 180, 177, 160],
+        backgroundColor: 'transparent',
+        borderColor: '#007bff',
+        pointBorderColor: '#007bff',
+        pointBackgroundColor: '#007bff',
+        fill: false
+        // pointHoverBackgroundColor: '#007bff',
+        // pointHoverBorderColor    : '#007bff'
+      },
+      {
+        type: 'line',
+        label:'b',
+        data: [60, 80, 70, 67, 80, 77, 100],
+        backgroundColor: 'tansparent',
+        borderColor: '#ced4da',
+        pointBorderColor: '#ced4da',
+        pointBackgroundColor: '#ced4da',
+        fill: false
+        // pointHoverBackgroundColor: '#ced4da',
+        // pointHoverBorderColor    : '#ced4da'
+      }]
     },
     options: {
       maintainAspectRatio: false,
       tooltips: {
-        mode: obj[0].mode,
-        intersect: obj[0].intersect
+        mode: obj.map(ob=>{
+          return ob.mode
+        }),
+        intersect: obj.map(ob=>{return ob.intersect})
       },
       hover: {
-        mode: obj[0].mode,
-        intersect: obj[0].intersect
+        mode: obj.map(ob=>{return ob.mode}),//obj[0].mode,
+        intersect: obj.map(ob=>{return ob.intersect})//obj[0].intersect
       },
       legend: {
         display: true
       },
       scales: {
         yAxes: [{
-          // display: false,
+           display: false,
           gridLines: {
             display: true,
             lineWidth: '4px',
@@ -53,27 +100,31 @@ renderGraphic = obj => {
           ticks: $.extend({
             beginAtZero: true,
             suggestedMax: 15
-          }, obj[0].ticksStyle)
+          }, obj.map(ob=>{return ob.ticksStyle})//obj[0].ticksStyle
+          )
         }],
         xAxes: [{
           display: true,
           gridLines: {
-            display: false
+            display: false,
+            lineWidth:'4px'
           },
-          ticks: obj[0].ticksStyle
+          ticks: $.extend({
+            beginAtZero:true
+          },obj.map(ob=>{return ob.ticksStyle}) )//obj[0].ticksStyle
         }]
       }
     }
   })
 
 }
+rdm = _ => {
+  return Math.floor(Math.random()*16777215).toString(16)
+}
+console.log('Randomized',rdm())// lgtm [js/unused-local-variable]
 
 $(function () {
-  'use strict'
-
-
-
-  
+  'use strict'  
   var ticksStyle = {
     fontColor: '#495057',
     fontStyle: 'bold'
@@ -89,6 +140,7 @@ $(function () {
   .done(res=>{
     console.log('dashboardgot',res)
     const subutirs = [...new Set(res.res.map(re=>{return re.kdsubutir}))]
+    console.log("Subutires",subutirs)
     renderGraphic(subutirs.map(subutir=>{
       return {
         tgops:res.res.map(daily=>{
@@ -102,7 +154,7 @@ $(function () {
           }
         }),
         mode:mode,intersect:intersect,ticksStyle:ticksStyle,label:subutir,
-        borderColor:randomizeColor()
+        borderColor:'#'+randomizeColor()+''
       }
     }))
   })
@@ -110,5 +162,9 @@ $(function () {
     console.log('err dashboard',err)
   })
   
+  $('.m-0').css('color','#'+rdm()+'')
+
 })
-// lgtm [js/unused-local-variable]
+
+
+

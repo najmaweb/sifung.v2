@@ -58,6 +58,43 @@ where a.id=25 and a.urt=13 order by a.id,a.urt,a.urtx desc
 
 
 
+
+select id,pelaksana,kdbutir,nmbutir,kdnmbutir,target,awal,akhir,awalen,akhiren,bnyrincian,cast(100*(bnyrincian/target) as decimal(4,2))persentase,ak*bnyrincian total from 
+(select a.id,a.pelaksana,a.kdbutir ,b.nmbutir,concat(a.kdbutir,"-",b.nmbutir)kdnmbutir,a.target,date_format(a.awal,"%d/%m/%Y")awal,date_format(a.akhir,"%d/%m/%Y") akhir, 
+date_format(a.awal,"%m/%d/%Y")awalen,date_format(a.akhir,"%m/%d/%Y") akhiren,b.ak, 
+count(d.urt)bnyrincian 
+from capaian a  
+left outer join  butir b on b.kdbutir=a.kdbutir 
+left outer join header c on c.kdbutir=a.kdbutir and a.id=c.id 
+left outer join rincian01 d on d.urt = c.urt 
+where a.pelaksana="197411212001121002" 
+group by a.kdbutir)A 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 select a.id,a.urt,urtx,b.kdbutir,b.kdsubutir,butiranak,nops,tgops from 
 rincian01 a 
 left outer join header b on b.urt = a.urt 
@@ -91,3 +128,60 @@ left outer join tblstatdok tblstatdok2 on tblstatdok2.kdstatus=a.stat2
 left outer join tblstatdok tblstatdok3 on tblstatdok3.kdstatus=a.stat3 
 left outer join tblstatdok tblstatdok4 on tblstatdok4.kdstatus=a.stat4 
 where a.id=25 and a.urt=13 order by a.id,a.urt,a.urtx desc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select a.id,a.urt,a.kdbutir,a.kdsubutir,b.butiranak,
+a.dasar,a.pelaksana,e.fnme namapelaksana,e.jbtn jbtnpelaksana,c.fnme pemberi,c.jbtn,
+a.lokasi,h.pelayanan namaunit,date_format(a.mulai,"%d %b %Y")mulai,date_format(a.selesai,"%d %b %Y")selesai,a.ringkasan, 
+case when nops is null then "" else nops end nops,
+case when tgops is null then "" else tgops end tgops,f.ak,f.nmbutir,
+case when g.rgnm is null then "" else g.rgnm end rgnm, 
+count(d.id) jmlsubutir 
+from header a 
+left outer join butiranak b on b.kdbutir=a.kdbutir and b.kdsubutir=a.kdsubutir 
+left outer join progev.pegwdata c on c.unip=a.pemberi 
+left outer join rincian01 d on d.urt=a.urt 
+left outer join progev.pegwdata e on e.unip=a.pelaksana 
+left outer join butir f on f.kdbutir = a.kdbutir 
+left outer join tbldaerah g on g.rgkd=a.lokasi 
+left outer join progev.tblpelayanan h on h.kdupt=a.lokasi 
+where a.pelaksana="197411212001121002" and a.id=25
+group by a.urt 
+order by a.id,a.urt desc 

@@ -101,3 +101,51 @@ where a.id=25 and a.pelaksana="197411212001121002" group by a.urt order by a.id,
 
 
 SELECT pelaksana,a.kdsubutir,tgops,COUNT(urtx)frek FROM rincian01 a LEFT OUTER JOIN header b ON b.kdsubutir=a.kdsubutir ORDER BY tgops ;
+
+
+
+
+SELECT c.*,a.id,a.urt,a.kdbutir,a.kdsubutir,b.butiranak,a.dasar,a.pelaksana,e.fnme namapelaksana,e.jbtn jbtnpelaksana,c.fnme pemberi,c.jbtn,a.lokasi,h.namaunit,date_format(a.mulai,"%d %b %Y")mulai,date_format(a.selesai,"%d %b %Y")selesai,a.ringkasan, nops,tgops,f.ak,f.nmbutir,g.rgnm, count(d.id) jmlsubutir 
+from header a 
+left outer join butiranak b on b.kdbutir=a.kdbutir and b.kdsubutir=a.kdsubutir 
+left outer join progev.pegwdata c on c.unip=a.pemberi 
+left outer join rincian01 d on d.urt=a.urt 
+left outer join progev.pegwdata e on e.unip=a.pelaksana 
+left outer join butir f on f.kdbutir = a.kdbutir 
+left outer join tbldaerah g on g.rgkd=a.lokasi 
+left outer join progev.tblupt h on h.kdupt=e.kdupt 
+where a.id=25 and a.pelaksana=197411212001121002 
+group by a.urt order by a.id,a.urt desc
+
+
+
+
+
+SELECT c.*, count(d.id) jmlsubutir 
+from header a 
+left outer join butiranak b on b.kdbutir=a.kdbutir and b.kdsubutir=a.kdsubutir 
+left outer join progev.pegwdata c on c.unip=a.pemberi 
+left outer join rincian01 d on d.urt=a.urt 
+left outer join progev.pegwdata e on e.unip=a.pelaksana 
+left outer join butir f on f.kdbutir = a.kdbutir 
+left outer join tbldaerah g on g.rgkd=a.lokasi 
+left outer join progev.tblupt h on h.kdupt=c.kdupt 
+where a.id=25 and a.pelaksana=197411212001121002 
+group by a.urt order by a.id,a.urt desc
+
+
+SELECT a.kdsubutir,tgops,COUNT(urtx)frek FROM rincian01 a LEFT OUTER JOIN header b ON b.kdsubutir=a.kdsubutir GROUP BY a.kdsubutir,tgops ORDER BY tgops ;
+
+
+:[
+	{"pelaksana":"197411212001121002","kdsubutir":"a","tgops":"2022-01-01","frek":"2"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-01-01","frek":"5"},
+	{"pelaksana":"197411212001121002","kdsubutir":"a","tgops":"2022-05-01","frek":"2"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-05-23","frek":"1"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-09-08","frek":"2"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-09-27","frek":"1"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-10-04","frek":"1"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-10-10","frek":"3"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-11-04","frek":"1"},
+	{"pelaksana":"197411212001121002","kdsubutir":"b","tgops":"2022-11-05","frek":"1"}
+]

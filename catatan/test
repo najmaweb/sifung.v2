@@ -45,3 +45,78 @@ ORDER BY tgops ;
 
 
 
+create table pensegel (kdpensegel varchar(10),urpensegel varchar(200));
+insert into pensegel( kdpensegel,urpensegel) values ('0','pemeriksaan segel belum sesuai');
+insert into pensegel( kdpensegel,urpensegel) values ('1','pemeriksaan segel sudah sesuai');
+
+create table pensuhu (kdpensuhu varchar(10),urpensuhu varchar(200));
+insert into pensuhu( kdpensuhu,urpensuhu) values ('0','belum sesuai');
+insert into pensuhu( kdpensuhu,urpensuhu) values ('1','sudah sesuai');
+
+create table penkemas (kdpenkemas varchar(10),urpenkemas varchar(200));
+insert into penkemas( kdpenkemas,urpenkemas) values ('0','pemeriksaan kemasan belum sesuai');
+insert into penkemas( kdpenkemas,urpenkemas) values ('1','pemeriksaan kemasan sudah sesuai');
+
+
+create table penlabel (kdpenlabel varchar(10),urpenlabel varchar(200));
+insert into penlabel( kdpenlabel,urpenlabel) values ('0','pemeriksaan label belum sesuai');
+insert into penlabel( kdpenlabel,urpenlabel) values ('1','pemeriksaan label sudah sesuai');
+
+
+create table penkonsistensi (kdpenkonsistensi varchar(10),urpenkonsistensi varchar(200));
+insert into penkonsistensi( kdpenkonsistensi,urpenkonsistensi) values ('0','pemeriksaan konsistensi belum sesuai');
+insert into penkonsistensi( kdpenkonsistensi,urpenkonsistensi) values ('1','pemeriksaan konsistensi sudah sesuai');
+
+create table penwarna (kdpenwarna varchar(10),urpenwarna varchar(200));
+insert into penwarna( kdpenwarna,urpenwarna) values ('0','pemeriksaan warna belum sesuai');
+insert into penwarna( kdpenwarna,urpenwarna) values ('1','pemeriksaan warna sudah sesuai');
+
+create table penbau (kdpenbau varchar(10),urpenbau varchar(200));
+insert into penbau( kdpenbau,urpenbau) values ('0','pemeriksaan bau belum sesuai');
+insert into penbau( kdpenbau,urpenbau) values ('1','pemeriksaan bau sudah sesuai');
+
+create table penrasa (kdpenrasa varchar(10),urpenrasa varchar(200));
+insert into penrasa( kdpenrasa,urpenrasa) values ('0','pemeriksaan rasa belum sesuai');
+insert into penrasa( kdpenrasa,urpenrasa) values ('1','pemeriksaan rasa sudah sesuai');
+
+create table penpH (kdpenpH varchar(10),urpenpH varchar(200));
+insert into penpH( kdpenpH,urpenpH) values ('0','pemeriksaan ph belum sesuai');
+insert into penpH( kdpenpH,urpenpH) values ('1','pemeriksaan ph sudah sesuai');
+
+
+create table penkondisiumum (kdpenkondisiumum varchar(10),urpenkondisiumum varchar(200));
+insert into penkondisiumum( kdpenkondisiumum,urpenkondisiumum) values ('0','pemeriksaan kondisi umum belum sesuai');
+insert into penkondisiumum( kdpenkondisiumum,urpenkondisiumum) values ('1','pemeriksaan kondisi umum sudah sesuai');
+
+wahai anak adam, sesungguhnya engkau hanyalah hitungan hari. Jika satu hari dari kehidupan kita pergi, maka umur mu tidak semakin bertambah, akan tetapi jatah kehidupan di dunia semakin berkurang
+
+isi tab 5
+cmbAddPenKondisiUmum
+txtAdKondisiUmum2
+cmbAddPenpH
+txtAddpH2
+cmbAddPenSuhu
+txtAddSuhu2
+cmbAddPenRasa
+txtAddRasa2
+cmbAddPenBau
+txtAddBau2
+cmbAddPenWarna2
+txtAddWarna2
+cmbAddPenKonsistensi2
+txtAddHasilPeriksaKonsistensi2
+cmbAddPenSegel
+txtAddHasilPeriksaSegel
+cmbAddPenilaianLabel
+txtAddHasilPeriksaLabel2
+cmbAddPenilaianKemasan
+txtAddHasilPeriksaKemasan2
+
+
+
+
+SELECT id, urt, urtx, kdsubutir, nops, tgops, jnsPPK, media, jmltotal, asal, tujuan, pemilik, dok1, dok2, dok3, dok4, stat1, stat2, stat3, stat4, jmlhewan, kelamin, bulukulit, kondisi, nafsu, discharge, keterangan, suhu, pulsus, respirasi, limfo, mukosa, turgor, lesi, ketklinis, nilaisuhu, nilaipulsus, nilairespirasi, nilailimfo, nilaimukosa, nilaiturgor, nilailesi, diagnosa, tindaklanjut, jmlkemasan, jnskemasan, kemasan, segel, label, konsistensi, warna, bau, rasa, temperatur, ph, kondisiumum, nilaikemasan, nilaisegel, nilailabel, nilaikonsistensi, nilaiwarna, nilaibau, nilairasa, nilaitemperatur, nilaiph, tmst, riwayat, raba, catatan, rekam, kesimpulan, angkutan, kondisiangkutan, penampakan
+	FROM rincian01
+
+
+

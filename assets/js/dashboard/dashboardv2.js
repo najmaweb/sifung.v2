@@ -1,4 +1,5 @@
 reloadBarChart = obj => {
+  console.log('OBJ KDBUTIRS',obj.kdbutirs)
     var ticksStyle = {
     fontColor: '#495057',
     fontStyle: 'bold'
